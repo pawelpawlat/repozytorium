@@ -1,0 +1,63 @@
+
+#!/bin/bash
+clear
+
+echo "wprowadz imie: "
+read imie
+echo "wprowad nazwisko: "
+read nazwisko
+echo "podaj numer pokoju: "
+read numer_pokoju
+
+
+for i in `seq ${#imie}`
+do
+inicjal_imienia=${imie:0:$i}
+uzytkownik=$inicjal_imienia
+uzytkownik+=$nazwisko
+echo "proba dodania uzytkownika o nazwie $uzytkownik"
+
+zwr_getent=$(getent passwd $uzytkownik)
+if [ ${#zwr_getent} -gt 1 ]
+then
+echo "Taki uzytkownik juz istnieje, ale podbilem inicjal_imienia"
+
+else
+sudo adduser $uzytkownik --gecos $imie\ $nazwisko,$numer_pokoju
+break
+fi
+done
+
+
+#!/bin/bash
+clear
+
+echo "wprowadz imie: "
+read imie
+echo "wprowad nazwisko: "
+read nazwisko
+echo "podaj numer pokoju: "
+read numer_pokoju
+
+
+for i in `seq ${#imie}`
+do
+inicjal_imienia=${imie:0:$i}
+uzytkownik=$inicjal_imienia
+uzytkownik+=$nazwisko
+echo "proba dodania uzytkownika o nazwie $uzytkownik"
+
+zwr_getent=$(getent passwd $uzytkownik)
+if [ ${#zwr_getent} -gt 1 ]
+then
+echo "Taki uzytkownik juz istnieje, ale podbilem inicjal_imienia"
+
+else
+sudo adduser $uzytkownik --gecos $imie\ $nazwisko,$numer_pokoju
+break
+fi
+done
+
+
+echo "Witaj $uzytkownik" 
+

@@ -1,0 +1,34 @@
+#!/bin/bash
+clear
+
+echo "wprowadz imie: "
+read imie
+echo "wprowad nazwisko: "
+read nazwisko
+echo "podaj numer pokoju: "
+read numer_pokoju
+
+
+
+
+
+for i in ${1:$(echo $imie | wc -m)}
+
+inicjal_imienia=${imie:0:$i}
+
+uzytkownik=inicjal_imienia=${imie:0:$i}${nazwisko}
+
+if[ getent passwd $uzytkownik ]
+then
+echo "Taki uzytkownik juz istnieje, ale podbilem inicjal_imienia"
+
+fi
+done
+
+
+sudo adduser $uzytkownik --gecos $imie\ $nazwisko,$numer_pokoju
+
+
+
+echo "Witaj $uzytkownik" 
+
