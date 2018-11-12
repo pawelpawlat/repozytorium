@@ -2,6 +2,8 @@
 #!/bin/bash
 clear
 
+
+flag=false
 echo "wprowadz imie: "
 read imie
 echo "wprowad nazwisko: "
@@ -28,6 +30,27 @@ break
 fi
 done
 
+if [ "$flag" = false ]
+then
+for i in `seq 10000`
+do
+
+uzytkownik=$imie
+uzytkownik+=$i
+uzytkownik+=$nazwisko
+echo "proba dodania uzytkownika o nazwie $uzytkownik"
+
+zwr_getent=$(getent passwd $uzytkownik)
+if [ ${#zwr_getent} -gt 1 ]
+then
+echo "Taki uzytkownik juz istnieje, ale podbilem inicjal_imienia"
+
+else
+sudo adduser $uzytkownik --gecos $imie\ $nazwisko,$numer_pokoju
+break
+fi
+done
+fi
 
 echo "Witaj ! Twoj login to:  $uzytkownik"
  
