@@ -1,4 +1,4 @@
-#!/bin/bash
+s#!/bin/bash
 #cat/proc/version
 
 clear
@@ -7,7 +7,7 @@ now=`date +%y-%m-%d-godz.%H:%M%S`
 day=`date +%y-%m-%d`
 
 H=`date +%H:%M:%S`
-patch=/home/user/logdir
+patch=/home/user/katlog
 
 # wyswietl  $DAY
 # wyswietl $H
@@ -15,7 +15,7 @@ patch=/home/user/logdir
 mkdir $patch
 mkdir $patch/$day
 
-#echo $patch
+
 lsb_release -a >> $patch/$day/$H.log
 
 #wersja systemu
@@ -39,7 +39,7 @@ ifconfig -a > $patch/$day/Interface_$H.log
 ps -f >> $patch/$day/tmp
 cut -c 1-4,9-14,15-21,49-55 $patch/$day/tmp > $patch/$day/Process_$H.log
 rm -r $patch/$day/tmp
-cat /etc/services > $patch/$day/uslugi_$H.log
+cat /etc/services > $patch/$day/Services_$H.log
 
 sudo iptables -t filter -L > $patch/$day/Firewall_$H.log
 
@@ -47,4 +47,5 @@ sudo iptables -t filter -L > $patch/$day/Firewall_$H.log
 sudo fdisk -l > $patch/$day/Disklist_$H.log
 
 #wolna przestrzen
-df > $patch/$day/FreeSpace_%H.log
+df > $patch/$day/FreeSpace_$H.log
+

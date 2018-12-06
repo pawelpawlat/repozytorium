@@ -26,11 +26,12 @@ echo "Taki uzytkownik juz istnieje, ale podbilem inicjal_imienia"
 
 else
 sudo adduser $uzytkownik --gecos $imie\ $nazwisko,$numer_pokoju
+flag=true
 break
 fi
 done
 
-if [ "$flag" = false ]
+if [ "$flag" == false ]
 then
 for i in `seq 10000`
 do
@@ -43,7 +44,7 @@ echo "proba dodania uzytkownika o nazwie $uzytkownik"
 zwr_getent=$(getent passwd $uzytkownik)
 if [ ${#zwr_getent} -gt 1 ]
 then
-echo "Taki uzytkownik juz istnieje, ale podbilem inicjal_imienia"
+echo "Taki uzytkownik juz istnieje, ale dodalem liczbe"
 
 else
 sudo adduser $uzytkownik --gecos $imie\ $nazwisko,$numer_pokoju
